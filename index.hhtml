@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portail Soft Skills Pro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#2c3e50; --secondary:#3498db; --accent:#e74c3c; --bg:#f6f9fc; --card:#ffffff;
+      --grad: linear-gradient(135deg, #2c3e50 0%, #4d8af0 100%);
+    }
+    html,body{background:var(--bg); font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;}
+    .navbar{background:var(--primary); box-shadow:0 8px 30px rgba(0,0,0,.1)}
+    .navbar .nav-link{color:#dfe6ee}
+    .navbar .nav-link.active, .navbar .nav-link:hover{color:#fff}
+
+    .hero{
+      background: var(--grad);
+      color:#fff; position:relative; overflow:hidden;
+      border-radius:0 0 24px 24px;
+    }
+    .hero:before, .hero:after{content:""; position:absolute; border-radius:50%; filter: blur(60px); opacity:.25}
+    .hero:before{width:320px;height:320px;background:#fff; top:-80px; left:-80px}
+    .hero:after{width:420px;height:420px;background:#7abaff; bottom:-120px; right:-80px}
+    .hero .container{position:relative; z-index:2}
+
+    .tag{display:inline-flex; align-items:center; gap:.35rem; padding:.35rem .7rem; border-radius:999px; font-size:.85rem; background:rgba(255,255,255,.15); backdrop-filter: blur(6px);}
+
+    .section-title{font-weight:800}
+
+    .card-soft{
+      background:var(--card); border:0; border-radius:16px; overflow:hidden; height:100%;
+      box-shadow:0 10px 30px rgba(44,62,80,.1); transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card-soft:hover{ transform: translateY(-6px); box-shadow:0 20px 40px rgba(44,62,80,.18) }
+    .icon-circle{ width:56px; height:56px; border-radius:16px; display:grid; place-items:center; font-size:1.5rem; background: rgba(77,138,240,.12); color:#4d8af0 }
+
+    .chip{border:1px solid #e5edf7; background:#fff; color:#2c3e50; border-radius:999px; padding:.25rem .6rem; font-size:.8rem}
+
+    /* timeline */
+    .timeline{position:relative}
+    .timeline:before{content:""; position:absolute; left:20px; top:0; bottom:0; width:3px; background:#e6eef8}
+    .timeline-item{position:relative; padding-left:60px}
+    .timeline-item:before{content:""; position:absolute; left:10px; top:.4rem; width:22px; height:22px; border-radius:50%; background:#4d8af0; box-shadow:0 0 0 6px rgba(77,138,240,.15)}
+
+    /* modal */
+    .modal-header{border:0}
+
+    /* utilities */
+    .glass{background:rgba(255,255,255,.65); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.5)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0d6efd14; border:1px solid #0d6efd33; padding:.15rem .45rem; border-radius:.35rem}
+
+    /* back-to-top */
+    #backToTop{position:fixed; right:18px; bottom:18px; display:none; z-index:9999}
+
+    /* dark mode (toggle) */
+    .dark body, body.dark{--bg:#101418; --card:#0f141a; --primary:#131a22; --secondary:#6ab0ff; color:#e6eef7}
+    body.dark .navbar{background:#10161d}
+    body.dark .card-soft{box-shadow: 0 10px 30px rgba(0,0,0,.35)}
+    body.dark .chip{background:#0f141a; border-color:#243241; color:#cfe0ff}
+    body.dark .timeline:before{background:#1f2a37}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#"><i class="bi bi-stars me-2"></i>Soft Skills Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="#intro">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Les 12 Soft Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quiz">Auto-évaluation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ressources">Ressources</a></li>
+          <li class="nav-item ms-lg-2"><button class="btn btn-light btn-sm" id="toggleTheme"><i class="bi bi-moon-stars"></i> Thème</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero py-5" id="intro">
+    <div class="container text-center">
+      <div class="tag mb-3"><i class="bi bi-lightning-charge"></i> Portail interactif Bootstrap</div>
+      <h1 class="display-5 fw-bolder mb-2">Les 12 Soft Skills <span class="text-warning">déterminants</span> pour la réussite</h1>
+      <p class="lead mb-4 opacity-75">Explorez, pratiquez et mettez en œuvre les compétences humaines qui boostent la performance individuelle et collective.</p>
+      <div class="d-flex gap-2 justify-content-center">
+        <a href="#skills" class="btn btn-light btn-lg">Découvrir maintenant</a>
+        <a href="#quiz" class="btn btn-outline-light btn-lg"><i class="bi bi-clipboard-check me-1"></i>Passer le mini‑quiz</a>
+      </div>
+      <div class="mt-4 small opacity-75">Optimisé pour mobile • Animations douces • Modales détaillées</div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- QUICK FILTERS / SEARCH -->
+    <section class="mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-8">
+          <div class="input-group input-group-lg">
+            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <input id="search" class="form-control" placeholder="Rechercher une compétence, ex: Communication, Résilience…" />
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end d-grid d-md-block">
+          <div class="btn-group" role="group" aria-label="filtres rapides">
+            <button class="btn btn-outline-primary" data-filter="all">Toutes</button>
+            <button class="btn btn-outline-primary" data-filter="impact">Fort impact</button>
+            <button class="btn btn-outline-primary" data-filter="leadership">Leadership</button>
+            <button class="btn btn-outline-primary" data-filter="collab">Collaboration</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS GRID -->
+    <section id="skills" class="mb-5">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="section-title mb-0">Les 12 Soft Skills</h2>
+        <span class="text-muted">Cliquez pour voir les détails, exemples (REX) et impacts</span>
+      </div>
+      <div id="skillsGrid" class="row g-4"></div>
+    </section>
+
+    <!-- TIMELINE: METTRE EN PRATIQUE -->
+    <section class="mb-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h3 class="section-title">Plan d’action en 4 étapes</h3>
+          <p class="text-muted">Passez de la théorie à l’action avec un cycle simple et itératif.</p>
+          <div class="timeline mt-4">
+            <div class="timeline-item mb-4">
+              <h6 class="mb-1">1) Choisir 1–2 soft skills prioritaires</h6>
+              <p class="mb-0 text-muted">Sélectionnez selon votre contexte pro / perso et vos objectifs trimestriels.</p>
+            </div>
+            <div class="timeline-item mb-4">
+              <h6 class="mb-1">2) Définir des micro‑habitudes</h6>
+              <p class="mb-0 text-muted">Ex: <span class="kbd">feedback hebdo</span>, <span class="kbd">lecture 20 min/j</span>, <span class="kbd">rétro 10 min</span>.</p>
+            </div>
+            <div class="timeline-item mb-4">
+              <h6 class="mb-1">3) Mesurer & ajuster</h6>
+              <p class="mb-0 text-muted">Notez vos progrès, collectez des retours (pairs, manager, proches).</p>
+            </div>
+            <div class="timeline-item">
+              <h6 class="mb-1">4) Célébrer & ancrer</h6>
+              <p class="mb-0 text-muted">Célébrez les petites victoires et consolidez les routines efficaces.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft glass p-4">
+            <div class="d-flex align-items-center mb-3"><i class="bi bi-bullseye me-2 fs-4 text-primary"></i><h5 class="mb-0">Objectifs SMART</h5></div>
+            <p class="mb-1"><strong>Spécifique</strong> • <strong>Mesurable</strong> • <strong>Ambitieux</strong> • <strong>Réaliste</strong> • <strong>Temporel</strong></p>
+            <div class="row g-2 mt-2">
+              <div class="col-sm-6"><span class="chip">Ex: Faire 1 feedback constructif / semaine</span></div>
+              <div class="col-sm-6"><span class="chip">Ex: Lire 1 livre/mois</span></div>
+              <div class="col-sm-6"><span class="chip">Ex: 2 sessions focus sans réunion/jour</span></div>
+              <div class="col-sm-6"><span class="chip">Ex: 2 tests autom. / sprint</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ / SELF CHECK -->
+    <section id="quiz" class="mb-5">
+      <div class="card card-soft p-4">
+        <div class="d-flex align-items-center mb-3"><i class="bi bi-clipboard2-check me-2 fs-4 text-success"></i><h3 class="section-title mb-0">Auto‑évaluation express</h3></div>
+        <p class="text-muted">Notez‑vous de 1 (à travailler) à 5 (solide) sur chaque compétence. Votre radar se met à jour instantanément.</p>
+        <div id="quizList" class="row g-3"></div>
+        <hr class="my-4"/>
+        <canvas id="radar" height="260" class="w-100"></canvas>
+      </div>
+    </section>
+
+    <!-- RESSOURCES -->
+    <section id="ressources" class="mt-5">
+      <h3 class="section-title mb-3">Ressources utiles</h3>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card card-soft p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-book me-2"></i>Lectures & idées</h5>
+            <ul class="mb-0">
+              <li>"Drive" – Daniel Pink (motivation)</li>
+              <li>"Atomic Habits" – James Clear (micro‑habitudes)
+              <li>"Mindset" – Carol Dweck (état d’esprit de croissance)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-soft p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-people me-2"></i>Pratiques d’équipe</h5>
+            <ul class="mb-0">
+              <li>Rétrospectives courtes (30–45 min) hebdomadaires</li>
+              <li>Pairing & feedback continu</li>
+              <li>Tableau d’actions d’amélioration visibles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-5 py-5 text-center text-muted">
+    <div class="container small">
+      <div class="mb-2">© 2025 – Portail Soft Skills Pro • Bootstrap 5</div>
+      <div>Conçu pour un "effet wahou" ✨ – transitions douces, modales riches, radar interactif.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL DETAILS -->
+  <div class="modal fade" id="skillModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="skillTitle">Détail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="skillContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="backToTop" class="btn btn-primary btn-lg rounded-circle shadow"><i class="bi bi-arrow-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // --- DATA (extrait du README) ---
+    const skills = [
+      { id:1, cat:['impact','leadership'], icon:'bi-shield-check', title:'Honnêteté & Intégrité', emoji:'🤝',
+        def:"Être cohérent entre ce que l’on pense, dit et fait. Ne pas sacrifier ses valeurs pour un gain rapide.",
+        practices:['Respecter sa parole','Refuser les compromis contraires à l’éthique','Transparence pro','Savoir dire « non »','Assumer ses erreurs'],
+        rex:['Un manager qui admet une erreur renforce sa crédibilité','Un entrepreneur refuse un contrat douteux et gagne en confiance clients'],
+        impact:['Crée la confiance durable','Relations solides et sincères','Inspire le respect, même des concurrents']
+      },
+      { id:2, cat:['impact'], icon:'bi-gem', title:'Amour du travail bien fait', emoji:'💎',
+        def:'Aller au-delà du minimum requis, chercher la qualité et la valeur ajoutée dans chaque détail.',
+        practices:['Relire et améliorer avant de livrer','Corriger les imperfections','Soigner le détail','Chercher du feedback','Considérer chaque tâche comme une vitrine'],
+        rex:['Un artisan avec une finition impeccable attire plus de clients','Un étudiant qui soigne sa présentation marque le jury'],
+        impact:['Différencie dans un environnement compétitif','Réputation d’excellence','Opportunités de promotion']
+      },
+      { id:3, cat:['impact','leadership'], icon:'bi-trophy', title:'Culture de l’excellence', emoji:'🏆',
+        def:'Toujours viser plus haut, refuser la médiocrité et chercher la meilleure version de soi-même.',
+        practices:['Fixer des standards élevés','Progresser à chaque projet','Ne pas se contenter du « suffisant »','Évaluer régulièrement ses perfs','S’entourer de modèles inspirants'],
+        rex:['Kaizen chez Toyota','Un sportif bat son propre record'],
+        impact:['Crée des leaders reconnus','Cercle vertueux d’amélioration','Avantage durable en carrière']
+      },
+      { id:4, cat:['impact'], icon:'bi-book', title:'Apprendre toute la vie', emoji:'📚',
+        def:'Rester curieux et mettre à jour ses compétences en continu.',
+        practices:['Lire 20–30 min/jour','Suivre des formations en ligne','Conférences / webinars','Carnet de veille','Trouver des mentors'],
+        rex:['Bill Gates lit ~50 livres/an','Un employé apprend une compétence numérique clé'],
+        impact:['Adaptabilité dans un monde changeant','Valeur personnelle et pro','Protège contre l’obsolescence']
+      },
+      { id:5, cat:['impact'], icon:'bi-hourglass-split', title:'Discipline & Rigueur', emoji:'⏱️',
+        def:'Rester constant, respecter ses engagements et gérer son temps avec précision.',
+        practices:['Planifier avec objectifs clairs','Règle du 1%/jour','Méthode Pomodoro','Respecter les deadlines','Attaquer la tâche la plus dure'],
+        rex:['Écrire 1 page/jour = 1 livre/an','Un athlète régulier dépasse ceux qui abandonnent'],
+        impact:['Transforme les rêves en réalisations','Crédibilité pro','Succès à long terme']
+      },
+      { id:6, cat:['impact'], icon:'bi-bug', title:'Esprit critique & Résolution de problèmes', emoji:'🧠',
+        def:'Analyser objectivement, poser les bonnes questions et trouver des solutions pragmatiques.',
+        practices:['Vérifier les sources','Toujours demander « Pourquoi ? »','Découper les problèmes','Consulter plusieurs avis','Utiliser 5 Pourquoi / arbre des causes'],
+        rex:['Un ingénieur identifie la cause racine et sauve un projet','Une équipe remet en question ses pratiques et s’améliore'],
+        impact:['Réduit erreurs & gaspillages','Crédibilité de « solutionneur »','Meilleure prise de décision']
+      },
+      { id:7, cat:['collab'], icon:'bi-chat-dots', title:'Communication efficace', emoji:'🗣️',
+        def:'Transmettre clairement ses idées et écouter activement pour créer une vraie compréhension.',
+        practices:['Mots simples et clairs','Écoute active','Adapter au public','Langage non verbal','Sincérité > manipulation'],
+        rex:['Un manager clarifie sa vision et motive','Un commercial à l’écoute conclut plus facilement'],
+        impact:['Évite conflits et malentendus','Renforce confiance et influence','Meilleures relations']
+      },
+      { id:8, cat:['collab','leadership'], icon:'bi-emoji-heart-eyes', title:'Intelligence émotionnelle', emoji:'💖',
+        def:'Comprendre et gérer ses émotions et celles des autres.',
+        practices:['Identifier ses émotions','Garder son calme','Empathie','Donner/recevoir des critiques','Gratitude et bienveillance'],
+        rex:['Un leader serein en crise inspire confiance','Un enseignant empathique améliore les résultats'],
+        impact:['Relations plus harmonieuses','Meilleure gestion des conflits','Influence positive']
+      },
+      { id:9, cat:['impact'], icon:'bi-brush', title:'Créativité & innovation', emoji:'✨',
+        def:'Imaginer de nouvelles idées et transformer des concepts en solutions.',
+        practices:['Cultiver la curiosité','Carnet d’idées','Brainstorming sans filtre','Expérimenter et ajuster','S’inspirer d’univers variés'],
+        rex:['Le Post‑it naît d’une « erreur »','Start‑up alliant tradition & techno'],
+        impact:['Différenciation','Valeur dans un marché concurrentiel','Transformer défis en opportunités']
+      },
+      { id:10, cat:['collab','leadership'], icon:'bi-people', title:'Esprit d’équipe & collaboration', emoji:'🤗',
+        def:'Travailler efficacement avec les autres et contribuer à un objectif commun.',
+        practices:['Valoriser chacun','Jouer collectif','Construire la confiance','Partager les connaissances','Accepter les critiques'],
+        rex:['Équipe de foot gagnante par la cohésion','Groupe projet collaboratif finit plus vite'],
+        impact:['Multiplie les forces','Climat motivant','Résultats durables']
+      },
+      { id:11, cat:['leadership'], icon:'bi-rocket-takeoff', title:'Leadership & influence positive', emoji:'🚀',
+        def:'Inspirer, guider et motiver vers une vision commune, sans titre hiérarchique.',
+        practices:['Montrer l’exemple','Inspirer par l’action','Valoriser le collectif','Développer les autres','Rester humble et ouvert'],
+        rex:['Nelson Mandela par l’exemplarité','Un employé fédère sans être manager'],
+        impact:['Mobilise les énergies','Confiance et respect','Chemins vers de fortes responsabilités']
+      },
+      { id:12, cat:['impact'], icon:'bi-arrow-repeat', title:'Résilience & persévérance', emoji:'🌱',
+        def:'Rebondir après un échec et continuer malgré les obstacles.',
+        practices:['Échec = leçon','Attitude positive','Routines d’énergie','S’entourer positivement','Célébrer les petites victoires'],
+        rex:['Edison échoue 1000× avant l’ampoule','Entrepreneur réussi à sa 2e tentative'],
+        impact:['Inarrêtable face aux défis','Confiance inébranlable','Réussites exceptionnelles']
+      }
+    ];
+
+    // --- RENDER GRID ---
+    const grid = document.getElementById('skillsGrid');
+    function renderGrid(list){
+      grid.innerHTML = '';
+      list.forEach(s=>{
+        const col = document.createElement('div'); col.className = 'col-12 col-sm-6 col-lg-4';
+        col.innerHTML = `
+          <div class="card-soft p-4 h-100" data-cat="${s.cat.join(',')}">
+            <div class="d-flex align-items-center mb-3">
+              <div class="icon-circle me-3"><i class="bi ${s.icon}"></i></div>
+              <div>
+                <div class="fw-bold text-uppercase small text-muted">${s.emoji} Soft Skill</div>
+                <h5 class="mb-0">${s.title}</h5>
+              </div>
+            </div>
+            <p class="text-muted">${s.def}</p>
+            <div class="d-flex flex-wrap gap-1 mb-3">
+              ${s.practices.slice(0,3).map(p=>`<span class='chip'>${p}</span>`).join('')}
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary" data-id="${s.id}" data-bs-toggle="modal" data-bs-target="#skillModal"><i class="bi bi-info-circle me-1"></i>Détails</button>
+              <button class="btn btn-outline-primary" onclick="addToQuiz(${s.id})"><i class="bi bi-plus-circle me-1"></i>Évaluer</button>
+            </div>
+          </div>`;
+        grid.appendChild(col);
+      });
+    }
+    renderGrid(skills);
+
+    // --- FILTERS ---
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    filterButtons.forEach(btn=>btn.addEventListener('click',()=>{
+      const f = btn.getAttribute('data-filter');
+      const cards = grid.querySelectorAll('.card-soft');
+      cards.forEach(c=>{
+        const cats = (c.getAttribute('data-cat')||'').split(',');
+        c.parentElement.style.display = (f==='all'||cats.includes(f))?'' : 'none';
+      })
+      filterButtons.forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+    }));
+
+    // --- SEARCH ---
+    document.getElementById('search').addEventListener('input', e=>{
+      const q = e.target.value.toLowerCase();
+      const cards = grid.querySelectorAll('.card-soft');
+      cards.forEach(c=>{
+        const text = c.innerText.toLowerCase();
+        c.parentElement.style.display = text.includes(q)? '' : 'none';
+      })
+    });
+
+    // --- MODAL CONTENT ---
+    const skillModal = document.getElementById('skillModal');
+    skillModal.addEventListener('show.bs.modal', evt=>{
+      const id = parseInt(evt.relatedTarget?.getAttribute('data-id'));
+      const s = skills.find(x=>x.id===id);
+      if(!s) return;
+      document.getElementById('skillTitle').textContent = `${s.emoji} ${s.title}`;
+      document.getElementById('skillContent').innerHTML = `
+        <div class="mb-3">
+          <h6 class="fw-bold">Définition</h6>
+          <p class="text-muted">${s.def}</p>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="p-3 rounded border h-100">
+              <h6 class="fw-bold mb-2"><i class="bi bi-check2-circle me-1 text-success"></i>Bonnes pratiques</h6>
+              <ul class="mb-0">${s.practices.map(p=>`<li>${p}</li>`).join('')}</ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 rounded border h-100">
+              <h6 class="fw-bold mb-2"><i class="bi bi-journal-text me-1 text-primary"></i>Exemples (REX)</h6>
+              <ul class="mb-0">${s.rex.map(r=>`<li>${r}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 p-3 rounded border">
+          <h6 class="fw-bold mb-2"><i class="bi bi-graph-up-arrow me-1 text-danger"></i>Impact</h6>
+          <ul class="mb-0">${s.impact.map(i=>`<li>${i}</li>`).join('')}</ul>
+        </div>`;
+    });
+
+    // --- QUIZ / RADAR (simple canvas) ---
+    const quizList = document.getElementById('quizList');
+    const ratings = {}; // id -> 1..5
+    function addToQuiz(id){
+      if(ratings[id]) return; // already added
+      ratings[id] = 3; // default
+      renderQuiz(); drawRadar();
+      document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+    }
+    function renderQuiz(){
+      quizList.innerHTML = '';
+      Object.keys(ratings).forEach((idStr, idx)=>{
+        const s = skills.find(x=>x.id===parseInt(idStr));
+        const wrap = document.createElement('div'); wrap.className = 'col-12 col-md-6';
+        wrap.innerHTML = `
+          <div class="p-3 border rounded-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <strong>${s.emoji} ${s.title}</strong>
+              <span class="badge text-bg-light">${ratings[s.id]}/5</span>
+            </div>
+            <input type="range" min="1" max="5" step="1" value="${ratings[s.id]}" class="form-range" oninput="ratings[${s.id}]=parseInt(this.value); this.previousElementSibling.querySelector('span').textContent=this.value+'/5'; drawRadar();"/>
+          </div>`;
+        quizList.appendChild(wrap);
+      })
+    }
+    const radar = document.getElementById('radar');
+    function drawRadar(){
+      const ctx = radar.getContext('2d');
+      const W = radar.width = radar.clientWidth; const H = radar.height; ctx.clearRect(0,0,W,H);
+      const keys = Object.keys(ratings).map(id=>parseInt(id));
+      if(keys.length===0){ ctx.globalAlpha=.6; ctx.font='14px system-ui'; ctx.fillText('Ajoutez des compétences à évaluer via le bouton « Évaluer »', 12, 24); return; }
+      const cx=W/2, cy=H/2+10, r=Math.min(W,H)/2-24;
+      // axes
+      ctx.strokeStyle='#e6eef8'; ctx.fillStyle='#8aa4c2'; ctx.lineWidth=1;
+      keys.forEach((id, i)=>{
+        const angle = (i/keys.length)*Math.PI*2 - Math.PI/2;
+        const x = cx + Math.cos(angle)*r; const y = cy + Math.sin(angle)*r;
+        ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y); ctx.stroke();
+        ctx.globalAlpha=.9; ctx.font='12px system-ui'; ctx.fillText(skills.find(s=>s.id===id).title.split(' ')[0], x-20, y-6);
+      });
+      // polygon
+      ctx.beginPath(); ctx.strokeStyle='#4d8af0'; ctx.lineWidth=2; ctx.fillStyle='rgba(77,138,240,.18)';
+      keys.forEach((id,i)=>{
+        const angle = (i/keys.length)*Math.PI*2 - Math.PI/2;
+        const x = cx + Math.cos(angle)*r*(ratings[id]/5);
+        const y = cy + Math.sin(angle)*r*(ratings[id]/5);
+        if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+
+    // --- BACK TO TOP ---
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll',()=>{ btt.style.display = window.scrollY>300 ? 'block':'none'; });
+    btt.addEventListener('click',()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+    // --- THEME TOGGLE ---
+    const toggleTheme = document.getElementById('toggleTheme');
+    toggleTheme.addEventListener('click',()=>{
+      document.body.classList.toggle('dark');
+      toggleTheme.innerHTML = document.body.classList.contains('dark') ? '<i class="bi bi-brightness-high"></i> Thème' : '<i class="bi bi-moon-stars"></i> Thème';
+    });
+  </script>
+</body>
+</html>
