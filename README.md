@@ -1,5 +1,8 @@
 # 🌟 Les 12 Soft Skills Déterminants pour la Réussite 🌟
 
+-  https://vm.tiktok.com/ZMANs8CG6/
+-  Réussir avec les Soft Skills
+
 1. **🤝 Honnêteté & Intégrité à toutes épreuves**
    Être vrai, digne de confiance et respecter ses engagements.
 
