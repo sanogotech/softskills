@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 12 Clés de la Réussite Professionnelle</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --success-color: #2ecc71;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+    }
+
+    .key-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+
+    .btn-primary {
+      background-color: var(--secondary-color);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2980b9;
+    }
+
+    .btn-outline-primary {
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+
+    .btn-outline-primary:hover {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .category-1 { background-color: #3498db; }
+    .category-2 { background-color: #2ecc71; }
+    .category-3 { background-color: #e74c3c; }
+    .category-4 { background-color: #f39c12; }
+
+    .progress {
+      height: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .key-visual {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(45deg, #2c3e50, #3498db);
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .key-visual:before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      transform: rotate(-45deg);
+      animation: shine 3s infinite linear;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .interactive-test {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .key-number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+    }
+
+    .linked-modules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .linked-module {
+      background-color: var(--light-bg);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      border: 1px solid #ddd;
+    }
+
+    .pillar-card {
+      border-left: 4px solid;
+      transition: all 0.3s ease;
+    }
+
+    .pillar-1 { border-left-color: #3498db; }
+    .pillar-2 { border-left-color: #2ecc71; }
+    .pillar-3 { border-left-color: #e74c3c; }
+    .pillar-4 { border-left-color: #f39c12; }
+
+    .pillar-card:hover {
+      transform: scale(1.02);
+    }
+
+    .skill-meter {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Animation pour les cartes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .key-card {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    /* Délai d'animation pour chaque carte */
+    .key-card:nth-child(1) { animation-delay: 0.1s; }
+    .key-card:nth-child(2) { animation-delay: 0.2s; }
+    .key-card:nth-child(3) { animation-delay: 0.3s; }
+    .key-card:nth-child(4) { animation-delay: 0.4s; }
+    .key-card:nth-child(5) { animation-delay: 0.5s; }
+    .key-card:nth-child(6) { animation-delay: 0.6s; }
+    .key-card:nth-child(7) { animation-delay: 0.7s; }
+    .key-card:nth-child(8) { animation-delay: 0.8s; }
+    .key-card:nth-child(9) { animation-delay: 0.9s; }
+    .key-card:nth-child(10) { animation-delay: 1.0s; }
+    .key-card:nth-child(11) { animation-delay: 1.1s; }
+    .key-card:nth-child(12) { animation-delay: 1.2s; }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 2rem 0;
+      }
+
+      .key-icon {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-key me-2"></i>Les 12 Clés de la Réussite
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#cles">Les 12 Clés</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#categories">Par Catégories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#evaluation">Auto-évaluation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ressources">Ressources</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold mb-3">Les 12 Clés pour Réussir Professionnellement</h1>
+      <p class="lead mb-4">Découvrez les compétences, attitudes et stratégies essentielles pour exceller dans votre carrière</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#cles" class="btn btn-light btn-lg px-4">Découvrir les clés</a>
+        <a href="#evaluation" class="btn btn-outline-light btn-lg px-4">Faire le test</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mb-5">
+    <section id="cles" class="mb-5">
+      <h2 class="text-center mb-4">Les 12 Clés de la Réussite Professionnelle</h2>
+      
+      <div class="key-visual">
+        <div class="text-center">
+          <i class="bi bi-key-fill display-1"></i>
+          <p>Votre chemin vers l'excellence professionnelle</p>
+        </div>
+      </div>
+      
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-tools me-2"></i>
+              <h5 class="mb-0">Compétences techniques</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-1 text-white">Expertise</span>
+              <p>Rester excellent dans ton domaine, apprendre les nouvelles méthodes et outils.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Formation continue</span>
+                <span class="linked-module">Veille technologique</span>
+                <span class="linked-module">Certifications</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Compétences comportementales</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-3 text-white">Relations</span>
+              <p>Communication, leadership, intelligence émotionnelle.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Communication</span>
+                <span class="linked-module">Leadership</span>
+                <span class="linked-module">Empathie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-star me-2"></i>
+              <h5 class="mb-0">Excellence et différenciation</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-2 text-white">Attitude</span>
+              <p>Viser un travail de qualité extraordinaire qui se remarque.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Qualité</span>
+                <span class="linked-module">Innovation</span>
+                <span class="linked-module">Excellence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-lightbulb me-2"></i>
+              <h5 class="mb-0">Mindset (état d'esprit)</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-2 text-white">Attitude</span>
+              <p>Discipline, résilience, curiosité, pensée positive.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Résilience</span>
+                <span class="linked-module">Curiosité</span>
+                <span class="linked-module">Discipline</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <h5 class="mb-0">Réseau</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-3 text-white">Relations</span>
+              <p>Créer et entretenir des relations stratégiques.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Networking</span>
+                <span class="linked-module">Relations</span>
+                <span class="linked-module">Stratégie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-person-check me-2"></i>
+              <h5 class="mb-0">Autonomie</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-2 text-white">Attitude</span>
+              <p>Savoir avancer seul, prendre des initiatives.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Initiative</span>
+                <span class="linked-module">Indépendance</span>
+                <span class="linked-module">Responsabilité</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-book me-2"></i>
+              <h5 class="mb-0">Auto-formation continue</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-4 text-white">Croissance</span>
+              <p>Toujours apprendre, se former, se mettre à jour.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Apprentissage</span>
+                <span class="linked-module">Développement</span>
+                <span class="linked-module">Curiosité</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-person-badge me-2"></i>
+              <h5 class="mb-0">Mentorat</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-3 text-white">Relations</span>
+              <p>Avoir un mentor et transmettre à d'autres.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Guidance</span>
+                <span class="linked-module">Transmission</span>
+                <span class="linked-module">Partage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-clipboard-data me-2"></i>
+              <h5 class="mb-0">Pratiques & REX</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-1 text-white">Expertise</span>
+              <p>Capitaliser sur ce qui marche et corriger ce qui échoue.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Expérience</span>
+                <span class="linked-module">Amélioration</span>
+                <span class="linked-module">Retour d'expérience</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-globe me-2"></i>
+              <h5 class="mb-0">Anglais et langues</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-1 text-white">Expertise</span>
+              <p>Indispensable aujourd'hui pour les opportunités internationales.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Langues</span>
+                <span class="linked-module">International</span>
+                <span class="linked-module">Communication</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-journal-bookmark me-2"></i>
+              <h5 class="mb-0">Culture générale</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-1 text-white">Expertise</span>
+              <p>Comprendre différents secteurs, tendances, cultures.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Ouverture d'esprit</span>
+                <span class="linked-module">Culture</span>
+                <span class="linked-module">Trends</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col key-card">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-heart me-2"></i>
+              <h5 class="mb-0">Santé et équilibre</h5>
+            </div>
+            <div class="card-body">
+              <span class="category-badge category-4 text-white">Croissance</span>
+              <p>Énergie, concentration et bien-être sont les bases de la performance durable.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Bien-être</span>
+                <span class="linked-module">Équilibre</span>
+                <span class="linked-module">Santé</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="mb-5">
+      <h2 class="text-center mb-4">Les 4 Piliers de la Réussite Professionnelle</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card h-100 pillar-card pillar-1">
+            <div class="card-header text-white" style="background-color: #3498db;">
+              <h5 class="mb-0">1. Compétences & Expertise</h5>
+            </div>
+            <div class="card-body">
+              <p>L'expertise solide est la base : sans savoir-faire réel, il est difficile de progresser.</p>
+              <ul>
+                <li>Compétences techniques (hard skills)</li>
+                <li>Anglais et langues étrangères</li>
+                <li>Culture générale & ouverture d'esprit</li>
+                <li>Pratiques & REX (retours d'expérience)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card h-100 pillar-card pillar-2">
+            <div class="card-header text-white" style="background-color: #2ecc71;">
+              <h5 class="mb-0">2. Attitudes & Mindset</h5>
+            </div>
+            <div class="card-body">
+              <p>Ce qui différencie deux personnes avec les mêmes compétences, c'est leur état d'esprit.</p>
+              <ul>
+                <li>Mindset (discipline, résilience, curiosité)</li>
+                <li>Excellence & différenciation</li>
+                <li>Autonomie (initiative, indépendance)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card h-100 pillar-card pillar-3">
+            <div class="card-header text-white" style="background-color: #e74c3c;">
+              <h5 class="mb-0">3. Relations & Réseau</h5>
+            </div>
+            <div class="card-body">
+              <p>Le succès n'est jamais solitaire. Il dépend fortement des relations humaines.</p>
+              <ul>
+                <li>Compétences comportementales (soft skills)</li>
+                <li>Réseau (développer et entretenir ses contacts)</li>
+                <li>Mentorat (apprendre des autres et transmettre)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card h-100 pillar-card pillar-4">
+            <div class="card-header text-white" style="background-color: #f39c12;">
+              <h5 class="mb-0">4. Croissance & Équilibre</h5>
+            </div>
+            <div class="card-body">
+              <p>La réussite professionnelle ne tient pas seulement aux compétences, mais aussi à la capacité de durer.</p>
+              <ul>
+                <li>Auto-formation continue</li>
+                <li>Santé physique & équilibre de vie</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="alert alert-info">
+          <h5>La réussite repose sur l'équilibre de ces 4 piliers :</h5>
+          <p><strong>Savoir-faire (expertise) • Savoir-être (attitude) • Relations humaines (réseau) • Durabilité (croissance et équilibre)</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="evaluation" class="mb-5">
+      <h2 class="text-center mb-4">Auto-évaluation de vos compétences</h2>
+      
+      <div class="interactive-test">
+        <p class="lead text-center">Évaluez votre niveau actuel sur chacune des 12 clés pour identifier vos points forts et axes d'amélioration.</p>
+        
+        <div class="skill-meter">
+          <div class="skill-label">
+            <span>1. Compétences techniques</span>
+            <span id="skill1Value">3/5</span>
+          </div>
+          <div class="progress">
+            <div id="skill1Progress" class="progress-bar" role="progressbar" style="width: 60%"></div>
+          </div>
+        </div>
+        
+        <div class="skill-meter">
+          <div class="skill-label">
+            <span>2. Compétences comportementales</span>
+            <span id="skill2Value">3/5</span>
+          </div>
+          <div class="progress">
+            <div id="skill2Progress" class="progress-bar" role="progressbar" style="width: 60%"></div>
+          </div>
+        </div>
+        
+        <div class="skill-meter">
+          <div class="skill-label">
+            <span>3. Excellence et différenciation</span>
+            <span id="skill3Value">3/5</span>
+          </div>
+          <div class="progress">
+            <div id="skill3Progress" class="progress-bar" role="progressbar" style="width: 60%"></div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluationModal">
+            <i class="bi bi-clipboard-check me-1"></i>Commencer l'auto-évaluation complète
+          </button>
+        </div>
+      </div>
+      
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0">Plan d'action personnalisé</h5>
+            </div>
+            <div class="card-body">
+              <p>Sur la base de votre auto-évaluation, nous vous proposerons un plan d'action personnalisé pour progresser sur les clés les plus importantes pour vous.</p>
+              <ul>
+                <li>Priorisation des compétences à développer</li>
+                <li>Ressources ciblées pour votre progression</li>
+                <li>Objectifs SMART pour mesurer vos progrès</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="mb-0">Suivi de progression</h5>
+            </div>
+            <div class="card-body">
+              <p>Revenez régulièrement pour réévaluer vos compétences et visualiser vos progrès dans le temps.</p>
+              <div class="text-center">
+                <i class="bi bi-graph-up display-4 text-primary"></i>
+                <p class="mt-3">Visualisez votre évolution et célébrez vos progrès!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ressources" class="mb-5">
+      <h2 class="text-center mb-4">Ressources pour développer vos compétences</h2>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0">Formations recommandées</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cours en ligne : Développement des compétences techniques (Coursera, Udemy)</li>
+                <li class="list-group-item">Formation aux soft skills : Communication et leadership (LinkedIn Learning)</li>
+                <li class="list-group-item">Apprentissage des langues : Plateformes d'échange linguistique</li>
+                <li class="list-group-item">Développement personnel : Gestion du temps et productivité</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="mb-0">Livres indispensables</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">"The 7 Habits of Highly Effective People" - Stephen Covey</li>
+                <li class="list-group-item">"Mindset: The New Psychology of Success" - Carol Dweck</li>
+                <li class="list-group-item">"How to Win Friends and Influence People" - Dale Carnegie</li>
+                <li class="list-group-item">"Atomic Habits" - James Clear</li>
+                <li class="list-group-item">"Deep Work" - Cal Newport</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Outils pratiques</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h6>Développement technique</h6>
+              <ul>
+                <li>Plateformes de code en ligne</li>
+                <li>Tutoriels techniques</li>
+                <li>Projets open source</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h6>Réseau et relations</h6>
+              <ul>
+                <li>LinkedIn pour le networking</li>
+                <li>Outils de gestion des contacts</li>
+                <li>Plateformes de mentorat</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h6>Équilibre et productivité</h6>
+              <ul>
+                <li>Applications de méditation</li>
+                <li>Outil de gestion du temps</li>
+                <li>Trackers d'habitudes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container text-center">
+      <p class="mb-0">Portail des 12 Clés de la Réussite Professionnelle - Développez votre potentiel</p>
+      <p class="mb-0">© 2023 - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <!-- Modal for evaluation -->
+  <div class="modal fade" id="evaluationModal" tabindex="-1" aria-labelledby="evaluationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="evaluationModalLabel">Auto-évaluation complète</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Évaluez chaque compétence sur une échelle de 1 à 5 :</p>
+          
+          <div class="evaluation-item mb-3">
+            <h6>1. Compétences techniques (hard skills)</h6>
+            <p>Maîtrisez-vous les outils et méthodes de votre domaine? Restez-vous à jour avec les nouvelles technologies?</p>
+            <select class="form-select form-select-sm skill-rating" data-skill="1">
+              <option value="1">1 - Débutant</option>
+              <option value="2">2 - En progression</option>
+              <option value="3" selected>3 - Intermédiaire</option>
+              <option value="4">4 - Avancé</option>
+              <option value="5">5 - Expert</option>
+            </select>
+          </div>
+          
+          <div class="evaluation-item mb-3">
+            <h6>2. Compétences comportementales (soft skills)</h6>
+            <p>Communiquez-vous efficacement? Faites-vous preuve de leadership et d'intelligence émotionnelle?</p>
+            <select class="form-select form-select-sm skill-rating" data-skill="2">
+              <option value="1">1 - Débutant</option>
+              <option value="2">2 - En progression</option>
+              <option value="3" selected>3 - Intermédiaire</option>
+              <option value="4">4 - Avancé</option>
+              <option value="5">5 - Expert</option>
+            </select>
+          </div>
+          
+          <button class="btn btn-primary mt-3" onclick="calculateResults()">
+            <i class="bi bi-calculator me-1"></i>Calculer mes résultats
+          </button>
+          
+          <div id="evaluationResults" class="mt-4" style="display: none;">
+            <h5>Résultats de votre auto-évaluation</h5>
+            <p>Voici votre profil de compétences actuel :</p>
+            <div class="progress mb-2">
+              <div class="progress-bar" role="progressbar" style="width: 60%">Compétences techniques: 3/5</div>
+            </div>
+            <div class="progress mb-2">
+              <div class="progress-bar" role="progressbar" style="width: 60%">Soft skills: 3/5</div>
+            </div>
+            <div class="alert alert-info mt-3">
+              <h6>Conseils pour progresser :</h6>
+              <p>Pour progresser dans vos compétences techniques, envisagez de suivre des formations ciblées sur les nouvelles technologies de votre domaine.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary">Sauvegarder</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize skill ratings
+      const skillRatings = document.querySelectorAll('.skill-rating');
+      skillRatings.forEach(select => {
+        select.addEventListener('change', updateSkillProgress);
+      });
+    });
+
+    // Update skill progress bars
+    function updateSkillProgress() {
+      const skillId = this.getAttribute('data-skill');
+      const value = this.value;
+      const percentage = (value / 5) * 100;
+      
+      document.getElementById(`skill${skillId}Progress`).style.width = `${percentage}%`;
+      document.getElementById(`skill${skillId}Value`).textContent = `${value}/5`;
+    }
+
+    // Calculate evaluation results
+    function calculateResults() {
+      document.getElementById('evaluationResults').style.display = 'block';
+    }
+
+    // Simulate interactive elements
+    function simulateInteraction(element) {
+      element.classList.add('active');
+      setTimeout(() => {
+        element.classList.remove('active');
+      }, 300);
+    }
+  </script>
+</body>
+</html>
